@@ -8,7 +8,7 @@ public class Revista extends Publicacao{
 	private static int contR=0;
 	
 	public Revista() {
-		contR = getContR() + 1;
+		contR++;
 	}
 	@Override
 	public void mostra() {

@@ -9,8 +9,7 @@ public class ProgramaQ2 {
 		ArrayList<Cliente> clientes = new ArrayList<>();
 
 		for(int i=0;i<3;i++) {
-			System.out.print("1-Cadastrar Clente Comum ou 2-Cadastrar Clente VIP: ");
-			
+			System.out.print("1-Cadastrar Cliente Comum ou 2-Cadastrar Cliente VIP: ");
 			if(input.nextLine().equals("1"))
 				clientes.add(new ClienteC());
 			else
