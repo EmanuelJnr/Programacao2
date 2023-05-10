@@ -2,9 +2,7 @@ package Lista08;
 
 public class CalMaior {
 	public static int maior(int n1, int n2) {
-		if(n1>n2)
-			return n1;
-		return n2;
+		return Math.max(n1, n2);
 	}
 	public static int maior(int n1, int n2, int n3) {
 		return maior(maior(n1,n2),n3);

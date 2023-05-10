@@ -24,6 +24,11 @@ public class Evento {
 	public Evento() {
 		id = System.currentTimeMillis();
 	}
+	public boolean equals(Evento e) {
+		if(e.getId()==id)
+			return true;
+		return false;
+	}
 	public String toString() {
 		String[] priNome = cliente.getNome().split(" ");
 		DateTimeFormatter parser = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
