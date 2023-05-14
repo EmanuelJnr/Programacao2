@@ -11,6 +11,7 @@ public class Evento {
 	private LocalDateTime data;
 	private String local;
 	private Cliente cliente;
+	
 	private boolean contrato;
 
 	public Evento(String nome, LocalDateTime data, String local, Cliente cliente, boolean contrato) {
