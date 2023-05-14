@@ -11,29 +11,37 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class GeradorDeRelatorios {
 	public static void obterProgramacaoDoMes(CentralDeInformacoes c, Month month) {
-		int check=0;
-		Document documento = new Document(PageSize.A4);
-		String mes = month.toString().toLowerCase();
-		try {
-			FileOutputStream file = new FileOutputStream("relatório "+mes+".pdf");
-			PdfWriter.getInstance(documento, file);
-			for(Evento e : c.getTodosOsEventos()) {
-				if(e.getData().getMonthValue()==month.valorMonth && e.getData().getYear()==2023 && e.isContrato()) {
-					documento.open();
-					documento.add(new Paragraph(e.getInformacoesE()));
-					check++;
+		if(c.getTodosOsEventos().size()!=0) {//verifica se há pelo menos um evento cadastrado
+			boolean flag=false;
+			for(Evento ev : c.getTodosOsEventos()) {
+				if(ev.getData().getMonthValue()==month.valorMonth)//verifica se há pelo menos um evento no mês selecionado
+					flag=true;
+			}
+			if(flag) {//se for false ele não cria um PDF
+				Document documento = new Document(PageSize.A4);
+				String mes = month.toString().toLowerCase();
+				try {
+					FileOutputStream file = new FileOutputStream("relatório "+mes+".pdf");//cria um PDF para cada mês passado como parâmetro
+					PdfWriter.getInstance(documento, file);
+					for(Evento e : c.getTodosOsEventos()) {
+						if(e.getData().getMonthValue()==month.valorMonth && e.getData().getYear()==2023 && e.isContrato()) {
+							documento.open();
+							documento.add(new Paragraph(e.getInformacoesE()));//cria um parágrafo para cada evento daquele mês
+						}
+					}
+					documento.close();
+					System.out.println("Relatório criado!");
+				} catch (DocumentException de) {
+					System.err.println(de.getMessage());
+				} catch (IOException io) {
+					System.err.println(io.getMessage());
 				}
 			}
-			documento.close();
-			if(check==0)
-				System.out.println("Não há Eventos no mês informado!");
 			else
-				System.out.println("Relatório criado!");
-		} catch (DocumentException de) {
-			System.err.println(de.getMessage());
-		} catch (IOException io) {
-			System.err.println(io.getMessage());
+				System.out.println("Não há Eventos nesse mês!");
 		}
+		else
+			System.out.println("Não há Eventos cadastrados!");
 	}
 	/*public static void gerarRelatorioCompleto(CentralDeInformacoes c) {
 		Document documento = new Document(PageSize.A4);

@@ -11,6 +11,7 @@ public class Evento {
 	private LocalDateTime data;
 	private String local;
 	private Cliente cliente;
+	
 	private boolean contrato;
 
 	public Evento(String nome, LocalDateTime data, String local, Cliente cliente, boolean contrato) {
@@ -23,6 +24,11 @@ public class Evento {
 	}
 	public Evento() {
 		id = System.currentTimeMillis();
+	}
+	public boolean equals(Evento e) {
+		if(e.getId()==id)
+			return true;
+		return false;
 	}
 	public String toString() {
 		String[] priNome = cliente.getNome().split(" ");

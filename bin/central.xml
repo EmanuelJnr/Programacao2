@@ -1,84 +1,18 @@
 <ListaAquecimento.CentralDeInformacoes>
   <todosOsClientes>
     <ListaAquecimento.Cliente>
-      <nome>Emanuel Lopes Ventura Júnior</nome>
+      <nome>Emanuel</nome>
       <sexo>MASCULINO</sexo>
-      <CPF>234234</CPF>
-      <email>junior.ssu57@gmail.com</email>
-    </ListaAquecimento.Cliente>
-    <ListaAquecimento.Cliente>
-      <nome>Ewerton Luis da Mata Gonçalves</nome>
-      <sexo>MASCULINO</sexo>
-      <CPF>31354324354</CPF>
-      <email>wiliamewerton@gmail.com</email>
-    </ListaAquecimento.Cliente>
-    <ListaAquecimento.Cliente>
-      <nome>Andre Felipe</nome>
-      <sexo>MASCULINO</sexo>
-      <CPF>16535154854</CPF>
-      <email>andrefilipe.developer@gmail.com</email>
-    </ListaAquecimento.Cliente>
-    <ListaAquecimento.Cliente>
-      <nome>1&apos;or1=1</nome>
-      <sexo>MASCULINO</sexo>
-      <CPF>1516846511</CPF>
+      <CPF>100.124.554-70</CPF>
       <email>junior.ssu@hotmail.com</email>
     </ListaAquecimento.Cliente>
   </todosOsClientes>
   <todosOsEventos>
     <ListaAquecimento.Evento>
-      <id>1682040272141</id>
-      <nome>festinha privada</nome>
-      <data>2023-04-21T22:05:00</data>
-      <local>clube municipal</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente"/>
-      <contrato>true</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>1682040282141</id>
-      <nome>Halloween</nome>
-      <data>2023-10-31T22:00:00</data>
-      <local>Minha residência</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente[2]"/>
-      <contrato>true</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>1682040565747</id>
-      <nome>festinha</nome>
-      <data>2023-04-20T22:30:00</data>
-      <local>casa</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente[2]"/>
-      <contrato>true</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>1682050667219</id>
+      <id>1683739963585</id>
       <nome>Festa de Janeiro</nome>
-      <data>2023-05-01T00:00:00</data>
-      <local>Praça de Eventos</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente"/>
-      <contrato>false</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>1682050740125</id>
-      <nome>Festa do Jegue</nome>
-      <data>2023-07-17T22:00:00</data>
-      <local>Zabelê</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente[2]"/>
-      <contrato>false</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>1682205149259</id>
-      <nome>Super-Con Recife</nome>
-      <data>2023-07-08T11:00:00</data>
-      <local>Ginásio de Esportes Geraldo Magalhães, Av. Mal. Mascarenhas de Morais, 7787 - Imbiribeira, Recife - PE</local>
-      <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente[3]"/>
-      <contrato>true</contrato>
-    </ListaAquecimento.Evento>
-    <ListaAquecimento.Evento>
-      <id>0</id>
-      <nome>Festa Cosp Cast</nome>
-      <data>2023-05-27T17:00:00</data>
-      <local>Recife</local>
+      <data>2023-05-10T14:35:00</data>
+      <local>São Sebastião do Umbuzeiro</local>
       <cliente reference="../../../todosOsClientes/ListaAquecimento.Cliente"/>
       <contrato>true</contrato>
     </ListaAquecimento.Evento>

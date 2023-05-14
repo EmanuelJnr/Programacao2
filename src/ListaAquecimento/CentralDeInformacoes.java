@@ -23,7 +23,7 @@ public class CentralDeInformacoes {
 	}
 	public boolean adicionarEvento(Evento eAdd) {
 		for(Evento evento : todosOsEventos) {
-			if(eAdd.getId()==evento.getId())
+			if(eAdd.equals(evento))
 				return false;
 		}
 		if(eAdd.jaOcorreu()) {
