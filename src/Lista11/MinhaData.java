@@ -13,6 +13,25 @@ public class MinhaData implements ClasseComparavel{
 	public String toString() {
 		return dia+"/"+mes+"/"+ano;
 	}
+	public int comparacao(Object o) {
+		MinhaData md = (MinhaData)o;
+		
+		if(md.getAno()<ano)
+			return 1;
+		else if(md.getAno()==ano) {
+			if(md.getMes()<mes)
+				return 1;
+			else if(md.getMes()==mes) {
+				if(md.getDia()<dia)
+					return 1;
+				else if(md.getDia()==dia)
+					return 0;
+				return -1;
+			}
+			return -1;
+		}
+		return -1;
+	}
 	public int getDia() {
 		return dia;
 	}
@@ -30,25 +49,5 @@ public class MinhaData implements ClasseComparavel{
 	}
 	public void setAno(int ano) {
 		this.ano = ano;
-	}
-	public int comparacao(Object o) {
-		MinhaData md = (MinhaData)o;
-		
-		if(md.getAno()<ano) {
-			return 1;
-		}
-		else if(md.getAno()==ano) {
-			if(md.getMes()<mes)
-				return 1;
-			else if(md.getMes()==mes) {
-				if(md.getDia()<dia)
-					return 1;
-				else if(md.getDia()==dia)
-					return 0;
-				return -1;
-			}
-			return -1;
-		}
-		return -1;
 	}
 }
