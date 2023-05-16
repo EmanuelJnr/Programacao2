@@ -4,6 +4,10 @@ public abstract class Carro {
 	private String modelo;
 	private double preco;
 	
+	public Carro(String modelo, double preco) {
+		setModelo(modelo);
+		setPreco(preco);
+	}
 	public String getModelo() {
 		return modelo;
 	}
