@@ -1,0 +1,28 @@
+<AulaThead.CentralDeInformacoes>
+  <todasContasBancarias>
+    <AulaThead.ContaBancaria>
+      <nome>noel</nome>
+      <saldo>400.0</saldo>
+      <tipo>corrente</tipo>
+      <dataCriacao>17/05</dataCriacao>
+    </AulaThead.ContaBancaria>
+    <AulaThead.ContaBancaria>
+      <nome>junior</nome>
+      <saldo>500.0</saldo>
+      <tipo>poupança</tipo>
+      <dataCriacao>16/05</dataCriacao>
+    </AulaThead.ContaBancaria>
+    <AulaThead.ContaBancaria>
+      <nome>zenetsu</nome>
+      <saldo>700.0</saldo>
+      <tipo>corrente</tipo>
+      <dataCriacao>16/05</dataCriacao>
+    </AulaThead.ContaBancaria>
+    <AulaThead.ContaBancaria>
+      <nome>Ewerton</nome>
+      <saldo>5400.0</saldo>
+      <tipo>poupança</tipo>
+      <dataCriacao>14/05</dataCriacao>
+    </AulaThead.ContaBancaria>
+  </todasContasBancarias>
+</AulaThead.CentralDeInformacoes>
