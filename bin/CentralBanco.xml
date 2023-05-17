@@ -18,5 +18,11 @@
       <tipo>corrente</tipo>
       <dataCriacao>16/05</dataCriacao>
     </AulaThead.ContaBancaria>
+    <AulaThead.ContaBancaria>
+      <nome>Ewerton</nome>
+      <saldo>5400.0</saldo>
+      <tipo>poupança</tipo>
+      <dataCriacao>14/05</dataCriacao>
+    </AulaThead.ContaBancaria>
   </todasContasBancarias>
 </AulaThead.CentralDeInformacoes>
