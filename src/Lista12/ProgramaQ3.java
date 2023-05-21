@@ -18,16 +18,20 @@ public class ProgramaQ3 {
 			
 			if(op.equals("1")) {
 				System.out.print("Quantas páginas vai imprimir: ");
+				int pag = Integer.parseInt(input.nextLine());
 				try {
-					pagImpressas+=imp.imprimir(Integer.parseInt(input.nextLine()));
-				} catch (FaltouPapelException | FaltouTintaException f) {
-					System.out.println(f.getMessage());
+					pagImpressas+=imp.imprimir(pag);
+				} catch (FaltouPapelException  p) {
+					System.out.println(p.getMessage());
+					pagImpressas+=pag-p.getFaltou();
+				} catch(FaltouTintaException t) {
+					System.out.println(t.getMessage());
 				}
 			}
 			else if(op.equals("2")) {
 				System.out.print("Quantas folhas vai pôr na impressora: ");
 				int papeis = Integer.parseInt(input.nextLine());
-				imp.setQtdPaginas(imp.getQtdPaginas()+papeis);
+				imp.setQtdPapel(imp.getQtdPapel()+papeis);
 			}
 			else if(op.equals("3")) {
 				imp.setCargaToner(100);

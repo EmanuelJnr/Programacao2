@@ -2,16 +2,13 @@ package Lista12;
 
 public class FaltouPapelException extends Exception{
 	private static final long serialVersionUID = 1L;
-	private int qtdPagNImpressas;
+	private int faltou;
 
-	public FaltouPapelException(int qtdPagNImpressas) {
-		super("Papel insuficiente, faltou: "+qtdPagNImpressas+" páginas");
-		setQtdPagNImpressas(qtdPagNImpressas);
+	public FaltouPapelException(int faltou) {
+		super("Papel insuficiente, faltou: "+faltou+" páginas");
+		this.faltou=faltou;
 	}
-	public int getQtdPagNImpressas() {
-		return qtdPagNImpressas;
-	}
-	public void setQtdPagNImpressas(int qtdPagNImpressas) {
-		this.qtdPagNImpressas = qtdPagNImpressas;
+	public int getFaltou() {
+		return faltou;
 	}
 }

@@ -1,37 +1,34 @@
 package Lista12;
 
 public class Impressora {
-	private int qtdPaginas;
+	private int qtdPapel;
 	private float cargaToner;
 
-	public Impressora(int qtdPaginas, float cargaToner) {
-		setQtdPaginas(qtdPaginas);
+	public Impressora(int qtdPapel, float cargaToner) {
+		setQtdPapel(qtdPapel);
 		setCargaToner(cargaToner);
 	}
-	public int imprimir(int qtdP) throws FaltouPapelException, FaltouTintaException{
-		int qtdPI = qtdPaginas;
-		if(qtdP<=qtdPaginas) {
-			if(qtdP * 0.35<=cargaToner) {
-				qtdPaginas -= qtdP;
-				cargaToner -= qtdP * 0.35;
-				return qtdP;
+	public int imprimir(int qtdImprimir) throws FaltouPapelException, FaltouTintaException{
+		if(qtdImprimir<=qtdPapel) {
+			if(qtdImprimir * 0.35<=cargaToner) {
+				qtdPapel -= qtdImprimir;
+				cargaToner -= qtdImprimir * 0.35;
+				return qtdImprimir;
 			}
-			else {
+			else
 				throw new FaltouTintaException();
-			}
 		}
-		else if(qtdP>qtdPaginas){
-			int faltou = qtdP - qtdPaginas;
-			qtdPaginas = 0;
+		else {
+			int faltou = qtdImprimir - qtdPapel;
+			qtdPapel = 0;
 			throw new FaltouPapelException(faltou);
 		}
-		return qtdPI;
 	}
-	public int getQtdPaginas() {
-		return qtdPaginas;
+	public int getQtdPapel() {
+		return qtdPapel;
 	}
-	public void setQtdPaginas(int qtdPaginas) {
-		this.qtdPaginas = qtdPaginas;
+	public void setQtdPapel(int qtdPapel) {
+		this.qtdPapel = qtdPapel;
 	}
 	public float getCargaToner() {
 		return cargaToner;
