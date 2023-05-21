@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ProgramaQ3 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		Impressora imp = new Impressora(0, 0);
+		Impressora imp = new Impressora(0, 100);
 		int pagImpressas=0;
 		
 		boolean flag = true;
