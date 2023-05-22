@@ -1,4 +1,4 @@
-package AulaThead;
+package TreinarMySQL;
 
 import java.util.ArrayList;
 

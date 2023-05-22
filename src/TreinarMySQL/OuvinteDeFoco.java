@@ -1,4 +1,4 @@
-package AulaThead;
+package TreinarMySQL;
 
 import java.awt.Color;
 import java.awt.Font;

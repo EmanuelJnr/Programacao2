@@ -1,8 +1,10 @@
-package AulaThead;
+package TreinarMySQL;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -13,12 +15,16 @@ import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import Interface.CamposDeTexto;
 
 public class JanelaBanco extends JFrame{
-	public PersistenciaMySQL pmysql = new PersistenciaMySQL();//um objeto que guarda e recupera contas no banco de dados
+	//public PersistenciaMySQL pmysql = new PersistenciaMySQL();//um objeto que guarda e recupera contas no banco de dados
 	static final long serialVersionUID = 1L;
+	public Persistencia p = new Persistencia();
 	private CamposDeTexto tfNome;
 	private CamposDeTexto tfSaldo;
 	private CamposDeTexto tfTipo;
@@ -59,10 +65,13 @@ public class JanelaBanco extends JFrame{
 
 						ContaBancaria cb = new ContaBancaria(nome,saldo,tipo,dataCriacao);//cria um objeto conta bancária
 						try {
-							pmysql.salvarContaBancaria(cb);//tenta salvar o objeto no banco de dados
-						} catch (SQLException e) {
+							p.salvarContaBancaria(cb);
+							//pmysql.salvarContaBancaria(cb);//tenta salvar o objeto no banco de dados
+						//} catch (SQLException e) {
+						//	e.printStackTrace();
+						}catch (IOException e) {
 							e.printStackTrace();
-						}						
+						}
 						dispose();//deleta a janela
 						new JanelaBanco("Programa Banco");//instancia uma nova janela com a nova conta bancária
 					}
@@ -79,13 +88,17 @@ public class JanelaBanco extends JFrame{
 		modelo.addColumn("Tipo da Conta");//adiciona a coluna Tipo na tabela
 		modelo.addColumn("Data de criação");//adiciona a coluna Data na tabela
 
-		for (ContaBancaria c : pmysql.recuperarContas()) {//percorre os objetos dentro do Banco de dados
-			Object[] linha = new Object[modelo.getColumnCount()];//cria uma linha com N colunas
-			linha[0] = c.getNome();//adiciona o nome do objeto na primeira coluna
-			linha[1] = c.getSaldo();//adiciona o saldo do objeto na segunda coluna
-			linha[2]= c.getTipo();//adiciona o tipo da conta do objeto na terceira coluna
-			linha[3] = c.getDataCriacao();//adiciona a data de criação da conta do objeto na quarta coluna
-			modelo.addRow(linha);//adiciona a linha no modelo
+		try {
+			for (ContaBancaria c : p.recuperarContas()) {//percorre os objetos dentro do Banco de dados
+				Object[] linha = new Object[modelo.getColumnCount()];//cria uma linha com N colunas
+				linha[0] = c.getNome();//adiciona o nome do objeto na primeira coluna
+				linha[1] = c.getSaldo();//adiciona o saldo do objeto na segunda coluna
+				linha[2]= c.getTipo();//adiciona o tipo da conta do objeto na terceira coluna
+				linha[3] = c.getDataCriacao();//adiciona a data de criação da conta do objeto na quarta coluna
+				modelo.addRow(linha);//adiciona a linha no modelo
+			}
+		} catch (ParserConfigurationException | IOException | SAXException e) {
+			e.printStackTrace();
 		}
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);//cria um objeto que ordena as linhas do modelo
 		tabela.setRowSorter(sorter);//quando pressiona a coluna ele ordena as linhas

@@ -1,4 +1,4 @@
-package AulaThead;
+package TreinarMySQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,8 @@ public class PersistenciaMySQL {
 	public PersistenciaMySQL() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/java","Eclipse","");
+			conexao = DriverManager.getConnection("jdbc:mysql://192.168.18.150:3306/java","user","");
+			//"jdbc:mysql://localhost/java","Eclipse",""
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver do banco de dados não localizado.");
 			e.printStackTrace();

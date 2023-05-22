@@ -1,4 +1,4 @@
-package AulaThead;
+package TreinarMySQL;
 
 public class ContaBancaria {
 	private String nome;
