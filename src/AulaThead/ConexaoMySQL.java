@@ -10,8 +10,8 @@ public class ConexaoMySQL {
 		Connection conexao = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/java","root","Jazer2023@");
-			ResultSet rsCliente = conexao.createStatement().executeQuery("SELECT * FROM pessoas");
+			conexao = DriverManager.getConnection("jdbc:mysql://192.168.18.150/java","user","");
+			ResultSet rsCliente = conexao.createStatement().executeQuery("SELECT * FROM contasbancarias");
 			while(rsCliente.next()) {
 				System.out.println("Nome: "+rsCliente.getString("nome"));
 			}

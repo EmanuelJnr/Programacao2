@@ -13,7 +13,9 @@ public class PersistenciaMySQL {
 	public PersistenciaMySQL() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/java","Eclipse","");
+			System.out.println("Conectando ao banco.");
+			conexao = DriverManager.getConnection("jdbc:mysql://192.168.18.150/java","user","");
+			//"jdbc:mysql://localhost/java","Eclipse",""
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver do banco de dados não localizado.");
 			e.printStackTrace();
