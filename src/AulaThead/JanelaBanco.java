@@ -17,13 +17,14 @@ import javax.swing.table.TableRowSorter;
 import Interface.CamposDeTexto;
 
 public class JanelaBanco extends JFrame{
-	private PersistenciaMySQL pmysql = new PersistenciaMySQL();//um objeto que guarda e recupera contas no banco de dados
+	public PersistenciaMySQL pmysql = new PersistenciaMySQL();//um objeto que guarda e recupera contas no banco de dados
 	static final long serialVersionUID = 1L;
 	private CamposDeTexto tfNome;
 	private CamposDeTexto tfSaldo;
 	private CamposDeTexto tfTipo;
 	private CamposDeTexto tfDataCriacao;
 	private DefaultTableModel modelo;
+	private JTable tabela;
 
 	public JanelaBanco(String nome) {
 		super(nome);//nomeia o nome da janela
@@ -61,31 +62,17 @@ public class JanelaBanco extends JFrame{
 							pmysql.salvarContaBancaria(cb);//tenta salvar o objeto no banco de dados
 						} catch (SQLException e) {
 							e.printStackTrace();
-						}
-						//modelo.setRowCount(0);
-						//adicionarTabela();
+						}						
 						dispose();//deleta a janela
 						new JanelaBanco("Programa Banco");//instancia uma nova janela com a nova conta bancária
-
 					}
 				}.start();
 			}			
 		});
 	}
-	public void actionPerformed(ActionEvent e) {
-		if (getDefaultCloseOperation()==1) {
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			System.exit(EXIT_ON_CLOSE);
-			try {
-				pmysql.conexao.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
 	private void adicionarTabela() {
 		modelo = new DefaultTableModel();
-		JTable tabela = new JTable(modelo);
+		tabela = new JTable(modelo);
 
 		modelo.addColumn("Nome");//adiciona a coluna Nome na tabela
 		modelo.addColumn("Saldo");//adiciona a coluna Saldo na tabela

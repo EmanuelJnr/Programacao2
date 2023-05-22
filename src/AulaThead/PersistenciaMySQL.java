@@ -13,7 +13,7 @@ public class PersistenciaMySQL {
 	public PersistenciaMySQL() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/java","root","Jazer2023@");
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost/java","Eclipse","");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver do banco de dados não localizado.");
 			e.printStackTrace();
@@ -34,9 +34,6 @@ public class PersistenciaMySQL {
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if(conexao != null)
-				conexao.close();
 		}
 	}
 	public ArrayList<ContaBancaria> recuperarContas(){
@@ -44,7 +41,7 @@ public class PersistenciaMySQL {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-			pstm = conexao.prepareStatement("SELECT * FROM ContasBancarias");
+			pstm = conexao.prepareStatement("SELECT * FROM contasbancarias");
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				String nome,tipo,dataCriacao;
