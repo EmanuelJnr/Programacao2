@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +16,7 @@ import javax.swing.table.TableRowSorter;
 
 public class JanelaBanco extends JFrame{
 	static final long serialVersionUID = 1L;
-	private DataSource p;
+	private Persistencia p;
 	private MeuTextField tfNome;
 	private MeuTextField tfSaldo;
 	private MeuTextField tfTipo;
@@ -30,6 +31,7 @@ public class JanelaBanco extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//fecha a janela e encerra o programa
 		setLocationRelativeTo(null);//seta a janela para o centro da tela
 		adicionarTextFields();
+		adicionarLabels();
 		adicionarTabela();
 		adicionarBotões();
 		setVisible(true);//torna a janela visível
@@ -43,6 +45,23 @@ public class JanelaBanco extends JFrame{
 			p = new PersistenciaXML();
 		else
 			p = new PersistenciaMySQL();
+	}
+	public void adicionarLabels() {
+		JLabel nome = new JLabel("Nome");
+		nome.setBounds(100, 100, 190, 25);
+		add(nome);
+		
+		JLabel saldo = new JLabel("Saldo");
+		saldo.setBounds(100, 150, 190, 25);
+		add(saldo);
+		
+		JLabel tipo = new JLabel("Tipo");
+		tipo.setBounds(100, 200, 190, 25);
+		add(tipo);
+		
+		JLabel dataCriacao = new JLabel("Data da Criação");
+		dataCriacao.setBounds(50, 250, 190, 25);
+		add(dataCriacao);
 	}
 	private void adicionarBotões() {
 		JButton cadConta = new JButton("Cadastrar conta");

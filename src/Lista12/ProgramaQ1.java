@@ -11,7 +11,7 @@ public class ProgramaQ1 {
 		boolean flag=true;
 		while(flag) {
 			try {
-				System.out.println("Informe uma data: (DD/MM/YYYY): ");
+				System.out.println("Informe uma data: (DD/MM/AAAA): ");
 				String data = input.nextLine();
 				md = new MinhaData(data);
 				flag=false;
