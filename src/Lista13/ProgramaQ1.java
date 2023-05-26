@@ -14,12 +14,15 @@ public class ProgramaQ1 {
             if(!nome.equals("fim"))
                 nomes.add(nome);
         }while (!nome.equals("fim"));
+        
         String escolha = JOptionPane.showInputDialog("Escolha um nome");
+        
         int cont=0;
         for (String n: nomes) {
             if(n.equals(escolha))
                 cont++;
         }
+        
         JOptionPane.showMessageDialog(null, "Esse nome foi lido "+cont+" vezes");
     }
 }

@@ -5,7 +5,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ProgramaQ3 extends JFrame{
-    public ProgramaQ3(ArrayList<Pessoa> pessoas) {
+	private static final long serialVersionUID = 1L;
+	
+	public ProgramaQ3(ArrayList<Pessoa> pessoas) {
         setSize(350, 350);
         setLayout(new GridLayout (2, 2));
         for (Pessoa p:pessoas) {
@@ -20,8 +22,10 @@ public class ProgramaQ3 extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
     }
+	
     public static void main(String[] args){
         ArrayList<Pessoa> pessoas = new ArrayList<>();
+        
         for(int i=0;i<4;){
             String nome="";
             int idade=0;
@@ -33,6 +37,7 @@ public class ProgramaQ3 extends JFrame{
             i++;
             pessoas.add(new Pessoa(nome,idade));
         }
-        ProgramaQ3 p = new ProgramaQ3(pessoas);
+        
+        new ProgramaQ3(pessoas);
     }
 }
