@@ -12,7 +12,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 
-public class PersistenciaXML implements DataSource{
+public class PersistenciaXML implements Persistencia{
 	private XStream xstream = new XStream(new DomDriver());
 	private File arquivo;
 

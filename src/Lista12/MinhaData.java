@@ -12,13 +12,12 @@ public class MinhaData {
 	    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/uuuu")
 	    		.withResolverStyle(ResolverStyle.STRICT);
 	    LocalDate dataValida = LocalDate.parse(strDate, dTF);
-	    
         setStrDate(dataValida);
 	}
 	public LocalDate getStrDate() {
 		return strDate;
 	}
-	public void setStrDate(LocalDate dataValida) {
-		this.strDate = dataValida;
+	public void setStrDate(LocalDate strDate) {
+		this.strDate = strDate;
 	}
 }

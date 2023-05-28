@@ -8,7 +8,8 @@ public class Impressora {
 		setQtdPapel(qtdPapel);
 		setCargaToner(cargaToner);
 	}
-	public int imprimir(int qtdImprimir) throws FaltouPapelException, FaltouTintaException{
+	public int imprimir(int qtdImprimir) throws FaltouPapelException,
+	FaltouTintaException{
 		if(qtdImprimir<=qtdPapel) {
 			if(qtdImprimir * 0.35<=cargaToner) {
 				qtdPapel -= qtdImprimir;

@@ -1,12 +1,14 @@
 package TreinarMySQL;
 
+import java.util.Date;
+
 public class ContaBancaria {
 	private String nome;
 	private double saldo;
 	private String tipo;
-	private String dataCriacao;
+	private Date dataCriacao;
 	
-	public ContaBancaria(String nome, double saldo, String tipo, String dataCriacao) {
+	public ContaBancaria(String nome, double saldo, String tipo, Date dataCriacao) {
 		setNome(nome);
 		setSaldo(saldo);
 		setTipo(tipo);
@@ -35,10 +37,10 @@ public class ContaBancaria {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(String dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 }

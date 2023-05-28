@@ -3,8 +3,14 @@ package TreinarMySQL;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,14 +18,15 @@ import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 
 public class JanelaBanco extends JFrame{
 	static final long serialVersionUID = 1L;
-	private DataSource p;
+	private Persistencia p;
 	private MeuTextField tfNome;
 	private MeuTextField tfSaldo;
 	private MeuTextField tfTipo;
-	private MeuTextField tfDataCriacao;
+	private JFormattedTextField tfDataCriacao;
 
 	public JanelaBanco() {
 		super("Programa Banco");
@@ -30,6 +37,7 @@ public class JanelaBanco extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//fecha a janela e encerra o programa
 		setLocationRelativeTo(null);//seta a janela para o centro da tela
 		adicionarTextFields();
+		adicionarLabels();
 		adicionarTabela();
 		adicionarBotões();
 		setVisible(true);//torna a janela visível
@@ -44,6 +52,23 @@ public class JanelaBanco extends JFrame{
 		else
 			p = new PersistenciaMySQL();
 	}
+	public void adicionarLabels() {
+		JLabel nome = new JLabel("Nome");
+		nome.setBounds(100, 100, 190, 25);
+		add(nome);
+		
+		JLabel saldo = new JLabel("Saldo");
+		saldo.setBounds(100, 150, 190, 25);
+		add(saldo);
+		
+		JLabel tipo = new JLabel("Tipo");
+		tipo.setBounds(100, 200, 190, 25);
+		add(tipo);
+		
+		JLabel dataCriacao = new JLabel("Data da Criação");
+		dataCriacao.setBounds(50, 250, 190, 25);
+		add(dataCriacao);
+	}
 	private void adicionarBotões() {
 		JButton cadConta = new JButton("Cadastrar conta");
 		cadConta.setBounds(316, 560, 138, 30);
@@ -51,14 +76,19 @@ public class JanelaBanco extends JFrame{
 
 		cadConta.addActionListener(new ActionListener() {//cria um ouvinte para o botão
 			public void actionPerformed(ActionEvent e) {//verifica se o botão foi pressionado
-				String nome,tipo,dataCriacao;
+				String nome,tipo;
 				double saldo;
+				Date dataCriacao = new Date();
 
 				nome = tfNome.getText();
 				saldo = Double.parseDouble(tfSaldo.getText());
 				tipo = tfTipo.getText();
-				dataCriacao = tfDataCriacao.getText();
-
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					dataCriacao = sdf.parse(tfDataCriacao.getText());
+				} catch (ParseException e1) {
+					JOptionPane.showMessageDialog(null,"Data inválida!");
+				}
 				ContaBancaria cb = new ContaBancaria(nome,saldo,tipo,dataCriacao);
 				p.salvarDados(cb);//salva a conta no banco de dados
 				adicionarTabela();//cria uma nova tabela
@@ -78,7 +108,8 @@ public class JanelaBanco extends JFrame{
 			linha[0] = c.getNome();//adiciona o nome do objeto na primeira coluna
 			linha[1] = c.getSaldo();//adiciona o saldo do objeto na segunda coluna
 			linha[2]= c.getTipo();//adiciona o tipo da conta do objeto na terceira coluna
-			linha[3] = c.getDataCriacao();//adiciona a data de criação da conta do objeto na quarta coluna
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			linha[3] = sdf.format(c.getDataCriacao());//adiciona a data de criação da conta do objeto na quarta coluna
 			modelo.addRow(linha);//adiciona a linha no modelo
 		}
 
@@ -101,7 +132,13 @@ public class JanelaBanco extends JFrame{
 		tfTipo.addFocusListener(new OuvinteDeFoco(tfTipo));
 		add(tfTipo);
 
-		tfDataCriacao = new MeuTextField(" Data de criação", 150, 250, 190, 25);
+		try {
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
+			tfDataCriacao = new JFormattedTextField(mascaraData);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null,"Data inválida!");
+		}
+		tfDataCriacao.setBounds(150, 250, 190, 25);
 		tfDataCriacao.addFocusListener(new OuvinteDeFoco(tfDataCriacao));
 		add(tfDataCriacao);
 	}
