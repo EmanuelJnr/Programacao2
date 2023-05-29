@@ -3,38 +3,47 @@ package TreinarMySQL;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 
 public class JanelaBanco extends JFrame{
 	static final long serialVersionUID = 1L;
 	private Persistencia p;
 	private MeuTextField tfNome;
 	private MeuTextField tfSaldo;
-	private MeuTextField tfTipo;
-	private MeuTextField tfDataCriacao;
+	private JRadioButton contaPoupanca;
+	private JRadioButton contaCorrente;
+	private JFormattedTextField tfDataCriacao;
 
 	public JanelaBanco() {
 		super("Programa Banco");
-		escolherBanco();//showOptionDialog para escolher o banco
+		escolherBanco();
 		setSize(500, 700);
-		setLayout(null);//define que a janela não terá layout
+		setLayout(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/TreinarMySQL/banco.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//fecha a janela e encerra o programa
-		setLocationRelativeTo(null);//seta a janela para o centro da tela
-		adicionarTextFields();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		adicionarLabels();
-		adicionarTabela();
 		adicionarBotões();
-		setVisible(true);//torna a janela visível
+		adicionarTabela();
+		adicionarRadioButton();
+		adicionarTextFields();
+		setVisible(true);
 	}
 	public void escolherBanco() {
 		String[] op = {"XML", "MySQL"};
@@ -48,80 +57,105 @@ public class JanelaBanco extends JFrame{
 	}
 	public void adicionarLabels() {
 		JLabel nome = new JLabel("Nome");
-		nome.setBounds(100, 100, 190, 25);
+		nome.setBounds(100, 100, 33, 25);
 		add(nome);
-		
+
 		JLabel saldo = new JLabel("Saldo");
-		saldo.setBounds(100, 150, 190, 25);
+		saldo.setBounds(100, 150, 32, 25);
 		add(saldo);
-		
-		JLabel tipo = new JLabel("Tipo");
-		tipo.setBounds(100, 200, 190, 25);
-		add(tipo);
-		
+
 		JLabel dataCriacao = new JLabel("Data da Criação");
-		dataCriacao.setBounds(50, 250, 190, 25);
+		dataCriacao.setBounds(100, 250, 90, 25);
 		add(dataCriacao);
 	}
 	private void adicionarBotões() {
-		JButton cadConta = new JButton("Cadastrar conta");
+		JButton cadConta = new JButton("Cadastrar Conta");
 		cadConta.setBounds(316, 560, 138, 30);
 		add(cadConta);
 
-		cadConta.addActionListener(new ActionListener() {//cria um ouvinte para o botão
-			public void actionPerformed(ActionEvent e) {//verifica se o botão foi pressionado
-				String nome,tipo,dataCriacao;
-				double saldo;
+		cadConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nome = tfNome.getText();
+					double saldo = Double.parseDouble(tfSaldo.getText());
 
-				nome = tfNome.getText();
-				saldo = Double.parseDouble(tfSaldo.getText());
-				tipo = tfTipo.getText();
-				dataCriacao = tfDataCriacao.getText();
+					String tipo;
+					if(contaPoupanca.isSelected())
+						tipo = "Poupança";
+					else
+						tipo = "Corrente";
 
-				ContaBancaria cb = new ContaBancaria(nome,saldo,tipo,dataCriacao);
-				p.salvarDados(cb);//salva a conta no banco de dados
-				adicionarTabela();//cria uma nova tabela
+					Date dataCriacao = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					dataCriacao = sdf.parse(tfDataCriacao.getText());
+
+					ContaBancaria cb = new ContaBancaria(nome,saldo,tipo,dataCriacao);
+					p.salvarDados(cb);
+					adicionarTabela();
+				}catch(ParseException pe) {
+					JOptionPane.showMessageDialog(null, "Data inválida!");
+				}catch(NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "Saldo inválido!");
+				}
 			}
 		});
 	}
 	private void adicionarTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		JTable tabela = new JTable(modelo);
-		modelo.addColumn("Nome");//adiciona a coluna Nome na tabela
-		modelo.addColumn("Saldo");//adiciona a coluna Saldo na tabela
-		modelo.addColumn("Tipo da Conta");//adiciona a coluna Tipo na tabela
-		modelo.addColumn("Data de criação");//adiciona a coluna Data na tabela
+		modelo.addColumn("Nome");
+		modelo.addColumn("Saldo");
+		modelo.addColumn("Tipo da Conta");
+		modelo.addColumn("Data de Criação");
 
-		for (ContaBancaria c : p.carregarDados()) {//percorre os objetos dentro do Banco de dados
-			Object[] linha = new Object[modelo.getColumnCount()];//cria uma linha com N colunas
-			linha[0] = c.getNome();//adiciona o nome do objeto na primeira coluna
-			linha[1] = c.getSaldo();//adiciona o saldo do objeto na segunda coluna
-			linha[2]= c.getTipo();//adiciona o tipo da conta do objeto na terceira coluna
-			linha[3] = c.getDataCriacao();//adiciona a data de criação da conta do objeto na quarta coluna
-			modelo.addRow(linha);//adiciona a linha no modelo
+		for (ContaBancaria c : p.carregarDados()) {
+			Object[] linha = new Object[modelo.getColumnCount()];
+			linha[0] = c.getNome();
+			linha[1] = c.getSaldo();
+			linha[2]= c.getTipo();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			linha[3] = sdf.format(c.getDataCriacao());
+			modelo.addRow(linha);
 		}
 
-		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);//cria um objeto que ordena as linhas do modelo
-		tabela.setRowSorter(sorter);//quando pressiona a coluna ele ordena as linhas
-		JScrollPane painel = new JScrollPane(tabela);//adiciona a tabela no painel
-		painel.setBounds(30, 300, 425, 250);//seta as dimensões do painel
-		add(painel);//adiciona o painel na janela
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+		tabela.setRowSorter(sorter);
+		JScrollPane painel = new JScrollPane(tabela);
+		painel.setBounds(30, 300, 425, 250);
+		add(painel);
+	}
+	private void adicionarRadioButton() {
+		contaPoupanca = new JRadioButton("Conta Poupança", true);
+		contaPoupanca.setBounds(100, 200, 118, 25);
+
+		contaCorrente = new JRadioButton("Conta Corrente");
+		contaCorrente.setBounds(232, 200, 118, 25);
+
+		ButtonGroup grupo = new ButtonGroup();
+		grupo.add(contaPoupanca);
+		grupo.add(contaCorrente);
+
+		add(contaPoupanca);
+		add(contaCorrente);
 	}
 	private void adicionarTextFields() {
-		tfNome = new MeuTextField(" Nome completo", 150, 100, 190, 25);
-		tfNome.addFocusListener(new OuvinteDeFoco(tfNome));
+		tfNome = new MeuTextField("", 150, 100, 190, 25);
+		tfNome.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NOME));
+		tfNome.addFocusListener(new OuvinteFocoNome(tfNome));
 		add(tfNome);
 
-		tfSaldo = new MeuTextField(" Saldo da conta", 150, 150, 190, 25);
-		tfSaldo.addFocusListener(new OuvinteDeFoco(tfSaldo));
+		tfSaldo = new MeuTextField("", 150, 150, 190, 25);
+		tfSaldo.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
+		tfSaldo.addFocusListener(new OuvinteFocoSaldo(tfSaldo));
 		add(tfSaldo);
 
-		tfTipo = new MeuTextField(" Tipo da conta", 150, 200, 190, 25);
-		tfTipo.addFocusListener(new OuvinteDeFoco(tfTipo));
-		add(tfTipo);
-
-		tfDataCriacao = new MeuTextField(" Data de criação", 150, 250, 190, 25);
-		tfDataCriacao.addFocusListener(new OuvinteDeFoco(tfDataCriacao));
+		try {
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
+			tfDataCriacao = new JFormattedTextField(mascaraData);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null,"Data inválida!");
+		}
+		tfDataCriacao.setBounds(210, 250, 130, 25);
 		add(tfDataCriacao);
 	}
 }

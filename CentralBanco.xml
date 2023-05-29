@@ -1,0 +1,62 @@
+<list>
+  <TreinarMySQL.ContaBancaria>
+    <nome>Noel</nome>
+    <saldo>1.0</saldo>
+    <tipo>corrente</tipo>
+    <dataCriacao>2023-11-10 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>junior</nome>
+    <saldo>2.0</saldo>
+    <tipo>poupança</tipo>
+    <dataCriacao>2023-05-28 20:46:55.614 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>j</nome>
+    <saldo>3.0</saldo>
+    <tipo>corrente</tipo>
+    <dataCriacao>2023-05-28 20:48:54.78 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>jun</nome>
+    <saldo>4.0</saldo>
+    <tipo>corrente</tipo>
+    <dataCriacao>2023-05-27 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>Emanuel Júnior</nome>
+    <saldo>32.56</saldo>
+    <tipo>poupança</tipo>
+    <dataCriacao>2023-05-26 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>emanuel</nome>
+    <saldo>1321.59</saldo>
+    <tipo>Conta Poupança</tipo>
+    <dataCriacao>2023-05-27 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>emanuel</nome>
+    <saldo>1321.59</saldo>
+    <tipo>Conta Corrente</tipo>
+    <dataCriacao>2023-05-27 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>Preenchimento obrigatório</nome>
+    <saldo>0.0</saldo>
+    <tipo></tipo>
+    <dataCriacao>2023-05-29 00:07:16.466 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>Preenchimento obrigatório</nome>
+    <saldo>0.0</saldo>
+    <tipo>Poupança</tipo>
+    <dataCriacao>1111-11-11 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+  <TreinarMySQL.ContaBancaria>
+    <nome>Preenchimento obrigatório</nome>
+    <saldo>0.0</saldo>
+    <tipo>Corrente</tipo>
+    <dataCriacao>1111-11-11 03:00:00.0 UTC</dataCriacao>
+  </TreinarMySQL.ContaBancaria>
+</list>
