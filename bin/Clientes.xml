@@ -1,0 +1,30 @@
+<list>
+  <TreinarMySQL.Cliente>
+    <idCliente>927510c4-33f8-47f1-bd05-4eea0ec71ffe</idCliente>
+    <nome>a</nome>
+    <idade>0</idade>
+    <temCorrente>false</temCorrente>
+    <temPoupanca>true</temPoupanca>
+  </TreinarMySQL.Cliente>
+  <TreinarMySQL.Cliente>
+    <idCliente>79caeca5-2547-4d29-b4f8-28c491a6af2f</idCliente>
+    <nome>b</nome>
+    <idade>0</idade>
+    <temCorrente>true</temCorrente>
+    <temPoupanca>false</temPoupanca>
+  </TreinarMySQL.Cliente>
+  <TreinarMySQL.Cliente>
+    <idCliente>c7a984b0-5985-4c78-9c10-6b9adf9a4dd6</idCliente>
+    <nome>Ewerton</nome>
+    <idade>21</idade>
+    <temCorrente>true</temCorrente>
+    <temPoupanca>false</temPoupanca>
+  </TreinarMySQL.Cliente>
+  <TreinarMySQL.Cliente>
+    <idCliente>38bfd202-32ce-4e98-ac7e-e2c325701f33</idCliente>
+    <nome>Noel</nome>
+    <idade>29</idade>
+    <temCorrente>true</temCorrente>
+    <temPoupanca>false</temPoupanca>
+  </TreinarMySQL.Cliente>
+</list>

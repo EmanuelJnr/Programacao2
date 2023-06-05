@@ -1,29 +1,46 @@
 package TreinarMySQL;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class ContaBancaria {
-	private String nome;
+	private UUID idContaBancaria;
+	private UUID idCliente;
+	private String numero;
 	private double saldo;
 	private String tipo;
 	private Date dataCriacao;
-	
-	public ContaBancaria(String nome, double saldo, String tipo, Date dataCriacao) {
-		setNome(nome);
+
+	public ContaBancaria(UUID idContaBancaria, UUID idCliente, String numero, double saldo, String tipo, Date dataCriacao) {
+		this.idContaBancaria = idContaBancaria;
+		this.dataCriacao = dataCriacao;
+		this.idCliente = idCliente;
+		this.numero = numero;
 		setSaldo(saldo);
-		setTipo(tipo);
-		setDataCriacao(dataCriacao);
+		this.tipo = tipo;
 	}
+	public ContaBancaria(UUID idCliente, String numero, double saldo, String tipo) {
+		idContaBancaria = UUID.randomUUID();
+		dataCriacao = new Date(System.currentTimeMillis());
+		this.idCliente = idCliente;
+		this.numero = numero;
+		setSaldo(saldo);
+		this.tipo = tipo;
+	}
+
 	public boolean equals(ContaBancaria cb) {
-		if(cb.getNome().equals(nome))
+		if(cb.getNumero().equals(numero))
 			return true;
 		return false;
 	}
-	public String getNome() {
-		return nome;
+	public UUID getIdContaBancaria() {
+		return idContaBancaria;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public UUID getIdCliente() {
+		return idCliente;
+	}
+	public String getNumero() {
+		return numero;
 	}
 	public double getSaldo() {
 		return saldo;
@@ -34,13 +51,7 @@ public class ContaBancaria {
 	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	public Date getDataCriacao() {
 		return dataCriacao;
-	}
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
 	}
 }
