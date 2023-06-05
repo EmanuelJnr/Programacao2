@@ -75,7 +75,7 @@ public class PersistenciaMySQL implements Persistencia{
 	}
 	public ContaBancaria recuperarContaBancariaID(UUID idContaBancaria) {
 		for (ContaBancaria cbs : carregarContasBancaria()) {
-			if(cbs.getIdContaBancaria()==idContaBancaria) {
+			if(cbs.getIdContaBancaria().equals(idContaBancaria)) {
 				return cbs;
 			}
 		}
@@ -123,7 +123,7 @@ public class PersistenciaMySQL implements Persistencia{
 	}
 	public Cliente recuperarClienteID(UUID idCliente) {
 		for (Cliente c : carregarClientes()) {
-			if(c.getIdCliente()==idCliente) {
+			if(c.getIdCliente().equals(idCliente)) {
 				return c;
 			}
 		}
