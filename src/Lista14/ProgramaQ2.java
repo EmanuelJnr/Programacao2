@@ -113,7 +113,7 @@ public class ProgramaQ2 extends JFrame{
 			resultado.setText("Você errou!");
 		Thread.sleep(2000);
 
-		int repetir = JOptionPane.showConfirmDialog(null, "Quer jogar de novo?",
+		int repetir = JOptionPane.showConfirmDialog(this, "Quer jogar de novo?",
 				"Confirmação", JOptionPane.YES_NO_OPTION);
 		if(repetir == 1)
 			System.exit(0);
