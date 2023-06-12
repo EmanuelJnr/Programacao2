@@ -71,13 +71,11 @@ public class JanelaBanco extends JFrame{
 		
 		JLabel img = new JLabel();
 		img.setBounds(480, 40, 240, 240);
-		img.setIcon(getImg("TreinarMySQL/banco.png", 240,240));
+		img.setIcon(getImg("banco.png", 240,240));
 		add(img);
 	}
-	public ImageIcon getImg(String nome, int x, int y) {
-		String caminhoDaImagem = nome;
-		ClassLoader classLoader = this.getClass().getClassLoader();
-		ImageIcon icone = new ImageIcon(classLoader.getResource(caminhoDaImagem));
+	public static ImageIcon getImg(String nome, int x, int y) {
+		ImageIcon icone = new ImageIcon("src/TreinarMySQL/" + nome);
 		Image image = icone.getImage();
 		Image newimg = image.getScaledInstance(x, y,  java.awt.Image.SCALE_SMOOTH);
 		return icone = new ImageIcon(newimg);
